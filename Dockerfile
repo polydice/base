@@ -1,12 +1,15 @@
 FROM ruby:2.4.2
 
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
 RUN apt-get update \
   && apt-get install -y build-essential apt-transport-https cmake python git libpq-dev \
     libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
-# Copied from node official image v8.9.1
-# https://github.com/nodejs/docker-node/blob/bf84a38aeacb4f6aad34e07c79fd3a0084da5cd2/8/Dockerfile
+# Copied from node official image v8.10.0
+# Source: https://github.com/nodejs/docker-node/blob/4c7763dc2cb067becf12ea4bd55e88b881ccba2b/8/Dockerfile
 
 # gpg keys listed at https://github.com/nodejs/node#release-team
 RUN set -ex \
@@ -20,12 +23,12 @@ RUN set -ex \
     56730D5401028683275BD23C23EFEFE93C4CFFFE \
     77984A986EBC2AA786BC0F66B01FBB92821C587A \
   ; do \
-    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+    gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
+    gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
+    gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
 
-ENV NODE_VERSION 8.9.1
+ENV NODE_VERSION 8.10.0
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -45,15 +48,15 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-ENV YARN_VERSION 1.3.2
+ENV YARN_VERSION 1.5.1
 
 RUN set -ex \
   && for key in \
     6A010C5166006599AA17F08146C2130DFD2497F5 \
   ; do \
-    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+    gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys "$key" || \
+    gpg --keyserver hkp://ipv4.pool.sks-keyservers.net --recv-keys "$key" || \
+    gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done \
   && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
@@ -63,6 +66,8 @@ RUN set -ex \
   && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
   && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
+
+# End of copy-pasting
 
 RUN wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1.0.4.tar.gz | tar -xvz \
   && cd opencc-1.0.4 \ 
