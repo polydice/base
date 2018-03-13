@@ -1,5 +1,8 @@
 FROM ruby:2.4.2
 
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+
 RUN apt-get update \
   && apt-get install -y build-essential apt-transport-https cmake python git libpq-dev \
     libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
