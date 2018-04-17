@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.5.1
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -8,7 +8,7 @@ RUN apt-get update \
     libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
-# Copied from node official image v8.10.0
+# Copied from node official image v8.11.1
 # Source: https://github.com/nodejs/docker-node/blob/4c7763dc2cb067becf12ea4bd55e88b881ccba2b/8/Dockerfile
 
 # gpg keys listed at https://github.com/nodejs/node#release-team
@@ -28,7 +28,7 @@ RUN set -ex \
     gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
 
-ENV NODE_VERSION 8.10.0
+ENV NODE_VERSION 8.11.1
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -61,10 +61,10 @@ RUN set -ex \
   && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz" \
   && curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz.asc" \
   && gpg --batch --verify yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
-  && mkdir -p /opt/yarn \
-  && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/yarn --strip-components=1 \
-  && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn \
-  && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg \
+  && mkdir -p /opt \
+  && tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/ \
+  && ln -s /opt/yarn-v$YARN_VERSION/bin/yarn /usr/local/bin/yarn \
+  && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
 # End of copy-pasting
@@ -74,4 +74,4 @@ RUN wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1
   && sed -i "s/DOCUMENTATION\:BOOL\=ON/DOCUMENTATION\:BOOL\=OFF/g" Makefile \
   && make install && cd ../ && rm -rf opencc-1.0.4
 
-RUN gem install bundler -v 1.15.1
+RUN gem install bundler -v 1.16.1
