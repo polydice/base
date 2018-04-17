@@ -1,4 +1,4 @@
-FROM ruby:2.4.2
+FROM ruby:2.5.1
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -74,4 +74,4 @@ RUN wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1
   && sed -i "s/DOCUMENTATION\:BOOL\=ON/DOCUMENTATION\:BOOL\=OFF/g" Makefile \
   && make install && cd ../ && rm -rf opencc-1.0.4
 
-RUN gem install bundler -v 1.15.1
+RUN gem install bundler -v 1.16.1
