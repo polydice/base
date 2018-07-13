@@ -3,8 +3,11 @@ FROM ruby:2.5.1
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
+ENV MALLOC_ARENA_MAX 2
+
 RUN apt-get update \
-  && apt-get install -y build-essential apt-transport-https cmake python git libpq-dev \
+  && apt-get upgrade \
+  && apt-get install -y vim build-essential apt-transport-https cmake python git libpq-dev \
     libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
@@ -74,4 +77,4 @@ RUN wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1
   && sed -i "s/DOCUMENTATION\:BOOL\=ON/DOCUMENTATION\:BOOL\=OFF/g" Makefile \
   && make install && cd ../ && rm -rf opencc-1.0.4
 
-RUN gem install bundler -v 1.16.1
+RUN gem install bundler -v 1.16.2
