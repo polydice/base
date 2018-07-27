@@ -6,7 +6,7 @@ ENV LC_ALL C.UTF-8
 ENV MALLOC_ARENA_MAX 2
 
 RUN apt-get update \
-  && apt-get upgrade \
+  && apt-get -y upgrade \
   && apt-get install -y build-essential apt-transport-https cmake python git libpq-dev default-libmysqlclient-dev \
        vim mysql-client postgresql-client \
        libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
