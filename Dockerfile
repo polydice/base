@@ -1,4 +1,4 @@
-FROM atitan/jemalloc_ruby:latest
+FROM atitan/jemalloc_ruby:2.5.1
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
