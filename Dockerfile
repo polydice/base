@@ -1,9 +1,7 @@
-FROM ruby:2.5.1
+FROM atitan/jemalloc_ruby:latest
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
-
-ENV MALLOC_ARENA_MAX 2
 
 RUN apt-get update \
   && apt-get -y upgrade \
@@ -78,5 +76,3 @@ RUN wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1
   && cd opencc-1.0.4 \ 
   && sed -i "s/DOCUMENTATION\:BOOL\=ON/DOCUMENTATION\:BOOL\=OFF/g" Makefile \
   && make install && cd ../ && rm -rf opencc-1.0.4
-
-RUN gem install bundler -v 1.16.3
