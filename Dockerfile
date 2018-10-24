@@ -1,4 +1,4 @@
-FROM atitan/jemalloc_ruby:2.5.1
+FROM atitan/jemalloc_ruby:2.5.3
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -10,7 +10,7 @@ RUN apt-get update \
        libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
-# Copied from node official image v8.11.3
+# Copied from node official image v8.12.0
 # Source: https://github.com/nodejs/docker-node/blob/master/8/stretch/Dockerfile
 
 # gpg keys listed at https://github.com/nodejs/node#release-team
@@ -31,7 +31,7 @@ RUN set -ex \
     gpg --keyserver hkp://pgp.mit.edu:80 --recv-keys "$key" ; \
   done
 
-ENV NODE_VERSION 8.11.3
+ENV NODE_VERSION 8.12.0
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -51,7 +51,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-ENV YARN_VERSION 1.6.0
+ENV YARN_VERSION 1.9.4
 
 RUN set -ex \
   && for key in \
