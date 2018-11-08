@@ -7,7 +7,7 @@ RUN apt-get update \
   && apt-get -y upgrade \
   && apt-get install -y build-essential apt-transport-https cmake python git libpq-dev default-libmysqlclient-dev \
        vim mysql-client postgresql-client \
-       libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev --no-install-recommends \
+       libxml2-dev libsasl2-dev graphicsmagick libxslt1-dev dumb-init --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # Copied from node official image v8.12.0
