@@ -6,6 +6,7 @@ RUN apt-get update \
     git \
     vim \
     mysql-client \
+    default-libmysqlclient-dev \
     postgresql-client \
     graphicsmagick \
   && rm -rf /var/lib/apt/lists/*
