@@ -9,6 +9,7 @@ RUN apt-get update \
     default-libmysqlclient-dev \
     postgresql-client \
     graphicsmagick \
+    libcurl3 \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
