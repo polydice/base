@@ -1,10 +1,9 @@
-FROM atitan/jemalloc_ruby:2.5.3-node8-slim
+FROM atitan/jemalloc_ruby:2.5.3-node-10-slim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     dumb-init \
     git \
-    vim \
     mysql-client \
     default-libmysqlclient-dev \
     postgresql-client \
@@ -31,4 +30,4 @@ RUN set -ex \
   \
   && apt-get purge -y --auto-remove $buildDeps \
   && cd ../ \
-  && rm -rf opencc-1.0.4
+  && rm -rf opencc-1.0.4*
