@@ -79,7 +79,11 @@ RUN apt-get update \
     libpq-dev \
     libxml2-dev \
     libxslt1-dev \
-    libsasl2-dev
+    libsasl2-dev \
+    g++ \
+    make \
+    cmake \
+    python
 
 RUN set -ex \
   && wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1.0.4.tar.gz | tar -xvz \
