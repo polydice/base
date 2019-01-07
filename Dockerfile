@@ -9,6 +9,8 @@ RUN apt-get update \
     postgresql-client \
     graphicsmagick \
     libcurl3 \
+    openssh-client \
+    sshpass \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
