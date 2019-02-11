@@ -1,11 +1,12 @@
-FROM ruby:2.5.3-stretch
+FROM ruby:2.6.1-stretch
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 # Start of Node
 
-ENV NODE_VERSION 10.15.0
+ENV NODE_VERSION 10.15.1
+ENV YARN_VERSION 1.13.0
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -44,7 +45,7 @@ RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && rm "node-v$NODE_VERSION-linux-$ARCH.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt \
   && ln -s /usr/local/bin/node /usr/local/bin/nodejs
 
-ENV YARN_VERSION 1.12.3
+# Yarn
 
 RUN set -ex \
   && for key in \
@@ -63,7 +64,7 @@ RUN set -ex \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
-## End of Node
+## End of Node and Yarn
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
