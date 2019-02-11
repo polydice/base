@@ -4,7 +4,7 @@ ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
 # Install bundler 2.0
-gem install bundler -v '>= 2.0'
+RUN gem install bundler -v '>= 2.0'
 
 # Start of Node
 
