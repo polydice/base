@@ -1,4 +1,4 @@
-FROM atitan/jemalloc_ruby:2.6.1-node-10-slim
+FROM atitan/jemalloc_ruby:2.6.2-node-10-slim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
