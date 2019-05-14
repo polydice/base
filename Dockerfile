@@ -1,4 +1,4 @@
-FROM ruby:2.6.2-stretch
+FROM ruby:2.6.3-stretch
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -8,8 +8,8 @@ RUN gem install bundler -v '>= 2.0'
 
 # Start of Node
 
-ENV NODE_VERSION 10.15.1
-ENV YARN_VERSION 1.13.0
+ENV NODE_VERSION 10.15.3
+ENV YARN_VERSION 1.16.0
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
