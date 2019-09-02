@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-stretch
+FROM ruby:2.6.4-stretch
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
@@ -8,8 +8,8 @@ RUN gem install bundler -v '>= 2.0'
 
 # Start of Node
 
-ENV NODE_VERSION 10.15.3
-ENV YARN_VERSION 1.16.0
+ENV NODE_VERSION 10.16.3
+ENV YARN_VERSION 1.17.3
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -87,7 +87,8 @@ RUN apt-get update \
     g++ \
     make \
     cmake \
-    python
+    python \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
   && wget -qO- https://bintray.com/byvoid/opencc/download_file?file_path=opencc-1.0.4.tar.gz | tar -xvz \
