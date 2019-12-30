@@ -3,13 +3,13 @@ FROM ruby:2.6.5-stretch
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
-# Install bundler 2.0
-RUN gem install bundler -v '>= 2.0'
+# Install bundler 2.1
+RUN gem install bundler -v '>= 2.1'
 
 # Start of Node
 
-ENV NODE_VERSION 10.16.3
-ENV YARN_VERSION 1.17.3
+ENV NODE_VERSION 12.14.0
+ENV YARN_VERSION 1.21.1
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
