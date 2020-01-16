@@ -11,6 +11,7 @@ RUN apt-get update \
     libcurl3 \
     openssh-client \
     sshpass \
+    file \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
