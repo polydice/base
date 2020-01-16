@@ -88,6 +88,7 @@ RUN apt-get update \
     make \
     cmake \
     python \
+    file \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
