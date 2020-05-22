@@ -15,6 +15,7 @@ RUN apt-get update \
     wget \
     tar \
     curl \
+    ca-certificates \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
@@ -29,7 +30,7 @@ RUN set -ex \
   && apt-get install -y --no-install-recommends $buildDeps \
   && rm -rf /var/lib/apt/lists/* \
   \
-  && wget -qO- https://s3-ap-northeast-1.amazonaws.com/devops.polydice.com/opencc-1.0.4.tar.gz | tar -xvz \
+  && curl https://s3-ap-northeast-1.amazonaws.com/devops.polydice.com/opencc-1.0.4.tar.gz | tar xvzf - \
   && cd opencc-1.0.4 \ 
   && sed -i "s/DOCUMENTATION\:BOOL\=ON/DOCUMENTATION\:BOOL\=OFF/g" Makefile \
   && make install \
