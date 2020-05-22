@@ -12,6 +12,9 @@ RUN apt-get update \
     openssh-client \
     sshpass \
     file \
+    wget \
+    tar \
+    curl \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
