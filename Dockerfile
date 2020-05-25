@@ -3,16 +3,11 @@ FROM atitan/jemalloc_ruby:2.6.6-node-12-slim
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     dumb-init \
-    git \
     mysql-client \
-    default-libmysqlclient-dev \
     postgresql-client \
     graphicsmagick \
     libcurl3 \
-    openssh-client \
-    sshpass \
     file \
-    wget \
     tar \
     curl \
     ca-certificates \
