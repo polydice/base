@@ -1,4 +1,4 @@
-FROM atitan/jemalloc_ruby:2.6.6-node-12-slim
+FROM atitan/jemalloc_ruby:2.6.6-node-12-slim-v1
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -6,7 +6,6 @@ RUN apt-get update \
     mysql-client \
     postgresql-client \
     graphicsmagick \
-    libcurl3 \
     file \
     tar \
     curl \
