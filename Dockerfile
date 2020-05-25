@@ -4,7 +4,6 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     git \
     openssh-client \
-    default-libmysqlclient-dev \
     libpq-dev \
     libxml2-dev \
     libxslt1-dev \
