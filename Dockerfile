@@ -4,6 +4,7 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     dumb-init \
     mysql-client \
+    default-libmysqlclient-dev \
     postgresql-client \
     graphicsmagick \
     file \
