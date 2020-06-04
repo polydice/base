@@ -11,6 +11,7 @@ RUN apt-get update \
     tar \
     curl \
     ca-certificates \
+    libmcrypt4 \
   && rm -rf /var/lib/apt/lists/*
 
 RUN set -ex \
