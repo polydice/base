@@ -8,5 +8,6 @@ RUN apt-get update \
     libxml2-dev \
     libxslt1-dev \
     libsasl2-dev \
+    libmcrypt-dev \
     build-essential \
   && rm -rf /var/lib/apt/lists/*
