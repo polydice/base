@@ -12,4 +12,5 @@ RUN apt-get update \
     curl \
     ca-certificates \
     libmcrypt4 \
+    shared-mime-info \
   && rm -rf /var/lib/apt/lists/*
