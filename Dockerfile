@@ -1,4 +1,4 @@
-FROM polydice/jemalloc_ruby:2.7.4-node-14-slim-rc
+FROM polydice/jemalloc_ruby:2.7.5-node-14-slim
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
