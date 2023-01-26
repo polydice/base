@@ -1,11 +1,11 @@
-ARG RUBY_VERSION=2.7.6
+ARG RUBY_VERSION=2.7.7
 ARG VARIANT=jemalloc-slim
 FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
 
-ARG BUNDLER_VERSION=2.3.16
+ARG BUNDLER_VERSION=2.4.5
 RUN gem install -N bundler -v ${BUNDLER_VERSION}
 
-ARG NODE_VERSION=14.19.3
+ARG NODE_VERSION=14.21.2
 RUN curl https://get.volta.sh | bash
 ENV VOLTA_HOME /root/.volta
 ENV PATH $VOLTA_HOME/bin:/usr/local/bin:$PATH
