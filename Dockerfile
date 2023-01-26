@@ -6,10 +6,11 @@ ARG BUNDLER_VERSION=2.4.5
 RUN gem install -N bundler -v ${BUNDLER_VERSION}
 
 ARG NODE_VERSION=14.21.2
+ARG YARN_VERSION=1.22.19
 RUN curl https://get.volta.sh | bash
 ENV VOLTA_HOME /root/.volta
 ENV PATH $VOLTA_HOME/bin:/usr/local/bin:$PATH
-RUN volta install node@${NODE_VERSION} && volta install yarn
+RUN volta install node@${NODE_VERSION} && volta install yarn@${YARN_VERSION}
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
