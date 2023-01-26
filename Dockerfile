@@ -1,4 +1,4 @@
-FROM polydice/base:0.30.2
+FROM polydice/base:0.30.3
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
