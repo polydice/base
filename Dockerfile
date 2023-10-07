@@ -1,8 +1,8 @@
-ARG RUBY_VERSION=2.7.7
+ARG RUBY_VERSION=2.7.8
 ARG VARIANT=jemalloc-slim
 FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-${VARIANT} as base
 
-ARG BUNDLER_VERSION=2.4.5
+ARG BUNDLER_VERSION=2.4.20
 RUN gem install -N bundler -v ${BUNDLER_VERSION}
 
 ARG NODE_VERSION=18.18.0
