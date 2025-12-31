@@ -27,13 +27,13 @@ Polydice's base docker image for Rails applications.
 1. Update version in README.md
 2. Commit and push tag:
    ```bash
-   git tag 0.32.0
-   git push origin 0.32.0
+   git tag <version>
+   git push origin <version>
    ```
 3. Wait for GitHub Actions to build and push to DockerHub
 4. Sync to ECR Public:
    ```bash
-   ./sync-to-ecr.sh 0.32.0
+   ./sync-to-ecr.sh <version>
    ```
 
 ## Changes in 0.32.0
