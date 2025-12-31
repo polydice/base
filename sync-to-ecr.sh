@@ -14,17 +14,12 @@ fi
 # Login to ECR Public
 aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
 
-# Sync tags
+# Sync multi-arch images
 for TAG in "${VERSION}" "${VERSION}-testing"; do
   echo "🔄 Syncing ${TAG}..."
-  docker pull ${SOURCE}:${TAG} --platform linux/amd64
-  docker tag ${SOURCE}:${TAG} ${TARGET}:${TAG}
-  docker push ${TARGET}:${TAG}
-  
-  # Also sync ARM64
-  docker pull ${SOURCE}:${TAG} --platform linux/arm64
-  docker tag ${SOURCE}:${TAG} ${TARGET}:${TAG}-arm64
-  docker push ${TARGET}:${TAG}-arm64
+  docker buildx imagetools create \
+    --tag ${TARGET}:${TAG} \
+    ${SOURCE}:${TAG}
 done
 
-echo "✅ Synced ${VERSION} to ECR Public (amd64 + arm64)"
+echo "✅ Synced ${VERSION} to ECR Public (multi-arch)"
