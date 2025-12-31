@@ -14,16 +14,10 @@ fi
 # Login to ECR Public
 aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
 
-# Sync multi-arch images
-for TAG in "${VERSION}" "${VERSION}-testing"; do
-  if docker manifest inspect ${SOURCE}:${TAG} &>/dev/null; then
-    echo "🔄 Syncing ${TAG}..."
-    docker buildx imagetools create \
-      --tag ${TARGET}:${TAG} \
-      ${SOURCE}:${TAG}
-  else
-    echo "⚠️  Tag ${TAG} not found on DockerHub, skipping..."
-  fi
-done
+# Sync multi-arch image
+echo "🔄 Syncing ${VERSION}..."
+docker buildx imagetools create \
+  --tag ${TARGET}:${VERSION} \
+  ${SOURCE}:${VERSION}
 
 echo "✅ Done syncing to ECR Public"
