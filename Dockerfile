@@ -3,7 +3,9 @@ FROM ruby:${RUBY_VERSION}-slim
 
 # jemalloc for better memory management
 RUN apt-get update && apt-get install -y --no-install-recommends libjemalloc2 \
-  && ln -sf $(find /usr/lib -name "libjemalloc.so.2" | head -1) /usr/lib/libjemalloc.so.2 \
+  && JEMALLOC_PATH=$(find /usr/lib -name "libjemalloc.so.2" | head -1) \
+  && [ -n "$JEMALLOC_PATH" ] || (echo "libjemalloc.so.2 not found" && exit 1) \
+  && ln -sf "$JEMALLOC_PATH" /usr/lib/libjemalloc.so.2 \
   && rm -rf /var/lib/apt/lists/*
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
@@ -39,6 +41,7 @@ RUN set -ex \
     g++ \
     make \
     cmake \
+    python3 \
   ' \
   && apt-get update \
   && apt-get install -y --no-install-recommends $buildDeps \
