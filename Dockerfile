@@ -3,7 +3,7 @@ FROM ruby:${RUBY_VERSION}-slim
 
 # jemalloc for better memory management
 RUN apt-get update && apt-get install -y --no-install-recommends libjemalloc2 \
-  && ln -sf /usr/lib/*-linux-gnu/libjemalloc.so.2 /usr/lib/libjemalloc.so.2 \
+  && ln -sf $(find /usr/lib -name "libjemalloc.so.2" | head -1) /usr/lib/libjemalloc.so.2 \
   && rm -rf /var/lib/apt/lists/*
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
