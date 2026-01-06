@@ -43,10 +43,9 @@ RUN apt-get update \
     libmcrypt4 \
   && rm -rf /var/lib/apt/lists/*
 
+# Don't add g++/make to buildDeps, or purge will remove build-essential
 RUN set -ex \
   && buildDeps=' \
-    g++ \
-    make \
     cmake \
     python3 \
   ' \
