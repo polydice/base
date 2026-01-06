@@ -9,7 +9,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends libjemalloc2 \
   && rm -rf /var/lib/apt/lists/*
 ENV LD_PRELOAD=/usr/lib/libjemalloc.so.2
 
-ARG BUNDLER_VERSION=2.4.20
+# 安裝 build tools 和 native extension 依賴
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    libffi-dev \
+  && rm -rf /var/lib/apt/lists/*
+
+ARG BUNDLER_VERSION=2.4.22
 RUN gem install -N bundler -v ${BUNDLER_VERSION}
 
 ARG NODE_VERSION=18.18.0
