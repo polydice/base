@@ -41,6 +41,15 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
 
+      - name: Build and push testing variant
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          context: .
+          file: ./Dockerfile.testing
+          platforms: linux/amd64,linux/arm64
+          tags: polydice/base:${{ github.ref_name }}-testing
+
   sync-to-ecr:
     name: Sync to ECR Public
     needs: build-and-push-docker-image
@@ -69,4 +78,7 @@ jobs:
           docker buildx imagetools create \
             --tag public.ecr.aws/z1n0q3w1/base:${{ github.ref_name }} \
             polydice/base:${{ github.ref_name }}
+          docker buildx imagetools create \
+            --tag public.ecr.aws/z1n0q3w1/base:${{ github.ref_name }}-testing \
+            polydice/base:${{ github.ref_name }}-testing
           echo "Successfully synced to ECR Public"
