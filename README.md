@@ -5,7 +5,15 @@ Polydice's base docker image for Rails applications.
 ## Variants
 
 - `x.y.z` - Standard image for running on production
-- `x.y.z-testing` - Image for testing which includes additional packages.
+- `x.y.z-testing` - Image for testing which includes additional packages:
+  - git
+  - openssh-client
+  - libpq-dev
+  - libxml2-dev
+  - libxslt1-dev
+  - libsasl2-dev
+  - libmcrypt-dev
+  - build-essential
 
 ## Architectures
 
