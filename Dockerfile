@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=2.7.8
+ARG RUBY_VERSION=3.3.12
 FROM ruby:${RUBY_VERSION}-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libffi-dev \
   && rm -rf /var/lib/apt/lists/*
 
-ARG BUNDLER_VERSION=2.4.22
+ARG BUNDLER_VERSION=2.5.22
 RUN gem install -N bundler -v ${BUNDLER_VERSION}
 
 ARG NODE_VERSION=18.18.0
