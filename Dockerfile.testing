@@ -1,13 +1,15 @@
-FROM polydice/base:0.32.0-rc5
+ARG BASE_TAG=latest
+FROM polydice/base:${BASE_TAG}
 
+# Development/testing-only packages on top of the production base image.
+# build-essential and libpq-dev are already in the base image, so they are
+# intentionally omitted here.
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
     git \
     openssh-client \
-    libpq-dev \
     libxml2-dev \
     libxslt1-dev \
     libsasl2-dev \
     libmcrypt-dev \
-    build-essential \
   && rm -rf /var/lib/apt/lists/*

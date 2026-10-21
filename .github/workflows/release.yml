@@ -48,6 +48,8 @@ jobs:
           context: .
           file: ./Dockerfile.testing
           platforms: linux/amd64,linux/arm64
+          build-args: |
+            BASE_TAG=${{ github.ref_name }}
           tags: polydice/base:${{ github.ref_name }}-testing
 
   sync-to-ecr:
