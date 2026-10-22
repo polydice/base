@@ -22,6 +22,7 @@ Polydice's base docker image for Rails applications.
 
 | Version | Ruby   | Node.js | Yarn    | Bundler | pnpm  | ARM64 |
 |---------|--------|---------|---------|---------|-------|-------|
+| 0.34.0  | 3.4.11 | 18.18.0 | 1.22.22 | 2.6.9   | 9.9.0 | ✅    |
 | 0.33.0  | 3.3.12 | 18.18.0 | 1.22.22 | 2.5.22  | 9.9.0 | ✅    |
 | 0.32.0  | 2.7.8  | 18.18.0 | 1.22.22 | 2.4.22  | 9.9.0 | ✅    |
 | 0.31.2  | 2.7.8  | 18.18.0 | 1.22.22 | 2.4.20  | 9.9.0 | ❌    |
@@ -41,6 +42,11 @@ Polydice's base docker image for Rails applications.
    - Build multi-arch images (amd64 + arm64)
    - Push to DockerHub
    - Sync to ECR Public
+
+## Changes in 0.34.0
+
+- Upgraded Ruby from 3.3.12 to 3.4.11
+- Upgraded Bundler from 2.5.22 to 2.6.9 (ships with Ruby 3.4.11)
 
 ## Changes in 0.33.0
 
