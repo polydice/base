@@ -1,4 +1,4 @@
-ARG RUBY_VERSION=3.4.11
+ARG RUBY_VERSION=3.4.13
 FROM ruby:${RUBY_VERSION}-slim
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
